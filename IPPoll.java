@@ -19,10 +19,9 @@ public class IPPoll {
                 int random = (int) Math.random() * seriaJavaList.size();
                 Address = seriaJavaList.get(random).getIPAdress();
                 port = seriaJavaList.get(random).getIPPort();
-
+                System.out.println("当前爬取的线程："+Thread.currentThread().getName()+url);
             }
-
-            List<seriaJava> status = agentPool.parseUrl(url, seriaJavaList);
+            List<seriaJava> status = agentPool.parseUrl_1(url, seriaJavaList);
             if(status==null){
                 i--;
                 continue;
@@ -33,6 +32,7 @@ public class IPPoll {
             agentPool.IPCeshi(seriaJavas);//用这些ip进行访问百度
             synchronized (seriaJavas){
                 seriaJavaList.addAll(seriaJavas);
+                System.out.println("当前存数据的线程为："+Thread.currentThread().getName());
             }
         }
     }
