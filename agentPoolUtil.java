@@ -12,18 +12,14 @@ public class agentPoolUtil {
         List<Thread> threads = new ArrayList<>();
         List<String> urls = new ArrayList<>();
         seriaJava seriaJava1 = new seriaJava();
-        seriaJava1.setIPAdress("127.0.0.1");
-        seriaJava1.setIPPort("9696");
-        seriaJava1.setIPSpeed("3");
-        seriaJava1.setIPType("HTTPS");
         seriaJavas.add(seriaJava1);
-       // seriaJavas = agentPool.parseUrl("https://www.kuaidaili.com/free/inha/1",seriaJavas);
-       // seriaJavas = agentPool.ipFilter(seriaJavas);
-       // System.out.println(seriaJavas);
-       // agentPool.IPCeshi(seriaJavas);
+        seriaJavas = agentPool.parseUrl("https://www.kuaidaili.com/free/inha/1",seriaJavas);
+        seriaJavas = agentPool.ipFilter(seriaJavas);
+        System.out.println(seriaJavas);
+        agentPool.IPCeshi(seriaJavas);
         //使用线程爬取后面页数的ip此时用的是第一页已经获取到的ip值
-        //IPPoll ipPool = new IPPoll(seriaJavas);
-        /*
+        IPPoll ipPool = new IPPoll(seriaJavas);
+        
         for (int i = 2; i <= 41; i++) {
             urls.add("http://www.xicidaili.com/nn/" + i);
         }
@@ -40,7 +36,7 @@ public class agentPoolUtil {
                 e.printStackTrace();
             }
         }
-        System.out.println(seriaJavas);*/
+        System.out.println(seriaJavas);
         //把获取到的数据存放到数据库中
         myRedis redis = new myRedis();
         redis.add(seriaJavas);
